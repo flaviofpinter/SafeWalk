@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="lorem_ipsum">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="bem_vindo_">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#9F45F9</item>
+    </style>
+</resources>

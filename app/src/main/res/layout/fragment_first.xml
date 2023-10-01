@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#242323"
+    android:rotation="0"
+    tools:context=".FirstFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Auto layout, variables, and unit scale are not yet supported -->
+
+        <TextView
+            android:id="@+id/bem_vindo_"
+            android:layout_width="244dp"
+            android:layout_height="43dp"
+            android:layout_alignStart="@+id/lorem_ipsum"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="false"
+            android:layout_marginStart="-4dp"
+            android:layout_marginTop="461dp"
+            android:layout_marginBottom="331dp"
+            android:gravity="top"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/bem_vindo_"
+            android:textAppearance="@style/bem_vindo_"
+            android:translationY="-1.85sp" />
+
+        <TextView
+            android:id="@+id/lorem_ipsum"
+            android:layout_width="313dp"
+            android:layout_height="128dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="540dp"
+            android:gravity="top"
+            android:text="@string/lorem_ipsum"
+            android:textAppearance="@style/lorem_ipsum" />
+
+        <Button
+            android:id="@+id/button_first"
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/lorem_ipsum"
+            android:layout_alignBottom="@+id/lorem_ipsum"
+            android:layout_marginEnd="-4dp"
+            android:layout_marginBottom="-51dp"
+            android:background="#00FFFFFF"
+            android:padding="16dp"
+            android:rotation="0"
+            android:text="@string/next" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="match_parent"
+            android:layout_height="447dp"
+            android:src="@drawable/inicio_sf_jpeg" />
+
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>
