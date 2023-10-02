@@ -13,4 +13,7 @@
     <string name="bem_vindo_">
     Bem-vindo!
     </string>
+    <string name="nome_da_rua">Nome da rua: </string>
+    <string name="bairro">Bairro: </string>
+    <string name="incidente">Tipo de incidente: </string>
 </resources>
