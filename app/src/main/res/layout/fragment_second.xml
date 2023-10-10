@@ -112,16 +112,6 @@
         android:text="@string/incidente"
         android:textSize="16sp" />
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="252dp"
-        android:layout_height="46dp"
-        android:layout_alignStart="@+id/rectangle_2"
-        android:layout_alignBottom="@+id/rectangle_2"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="247dp"
-        android:spinnerMode="dropdown" />
-
     <EditText
         android:id="@+id/editTextText3"
         android:layout_width="156dp"
@@ -164,5 +154,15 @@
         android:layout_marginStart="165dp"
         android:layout_marginTop="773dp"
         android:text="Button" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="258dp"
+        android:layout_height="104dp"
+        android:layout_alignStart="@+id/rectangle_2"
+        android:layout_alignBottom="@+id/rectangle_2"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="180dp"
+        android:spinnerMode="dropdown" />
 
 </RelativeLayout>
