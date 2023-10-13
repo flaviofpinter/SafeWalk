@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="41dp"
         android:layout_marginLeft="137dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="122dp"
         android:layout_marginEnd="24dp"
         android:layout_toEndOf="@+id/button_secondnext"
         android:background="@drawable/rectangle_2"
@@ -24,27 +24,17 @@
 
     <Button
         android:id="@+id/button_secondnext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="114dp"
+        android:layout_height="52dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="271dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="142dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="154dp"
+        android:layout_marginTop="664dp"
+        android:layout_marginEnd="164dp"
         android:text="@string/next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/rectangle_2"
-        android:layout_marginEnd="17dp"
-        android:text="@string/previous"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.736"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,7 +55,7 @@
         android:layout_alignStart="@+id/rectangle_2"
         android:layout_alignTop="@+id/view2"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="18dp"
         android:text="@string/nome_da_rua"
         android:textSize="16sp" />
 
@@ -79,7 +69,7 @@
         android:layout_marginTop="45dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Name" />
+        android:text="" />
 
     <View
         android:id="@+id/view4"
@@ -87,17 +77,17 @@
         android:layout_height="60dp"
         android:layout_alignStart="@+id/rectangle_2"
         android:layout_alignTop="@+id/rectangle_2"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="31dp"
         android:layout_marginTop="125dp"
         android:background="@drawable/retangulo_3" />
 
     <View
         android:id="@+id/view5"
-        android:layout_width="288dp"
-        android:layout_height="39dp"
+        android:layout_width="287dp"
+        android:layout_height="59dp"
         android:layout_alignStart="@+id/rectangle_2"
         android:layout_alignTop="@+id/rectangle_2"
-        android:layout_marginStart="39dp"
+        android:layout_marginStart="31dp"
         android:layout_marginTop="208dp"
         android:background="@drawable/retangulo_3" />
 
@@ -107,8 +97,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/rectangle_2"
         android:layout_alignTop="@+id/view2"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="181dp"
         android:text="@string/incidente"
         android:textSize="16sp" />
 
@@ -122,16 +112,16 @@
         android:layout_marginTop="124dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Name" />
+        android:text="" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="106dp"
-        android:layout_height="35dp"
+        android:layout_width="107dp"
+        android:layout_height="33dp"
         android:layout_alignStart="@+id/rectangle_2"
         android:layout_alignTop="@+id/view2"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="94dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="97dp"
         android:text="@string/bairro"
         android:textSize="16sp" />
 
@@ -157,12 +147,12 @@
 
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="258dp"
-        android:layout_height="104dp"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
         android:layout_alignStart="@+id/rectangle_2"
         android:layout_alignBottom="@+id/rectangle_2"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="180dp"
+        android:layout_marginStart="189dp"
+        android:layout_marginBottom="278dp"
         android:spinnerMode="dropdown" />
 
 </RelativeLayout>

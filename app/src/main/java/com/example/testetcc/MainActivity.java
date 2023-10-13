@@ -23,6 +23,12 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class MainActivity extends AppCompatActivity{
 
     private AppBarConfiguration appBarConfiguration;
@@ -58,6 +64,22 @@ public class MainActivity extends AppCompatActivity{
                         .setAction("Action", null).show();
             }
         });
+
+        try {
+            //database URL and user info.
+            Connection conn = DriverManager.getConnection("jdbc:mariadb://10.0.2.2:3307/testetcc", "root", "flavioteste123");
+            //Creates statement.
+            Statement statement = conn.createStatement();
+            //Executes query.
+            ResultSet rs = statement.executeQuery("SELECT * FROM tabelateste;");
+            //Moves the cursor to the first row.
+            rs.first();
+            //Prints the first column and first row value.
+            System.out.println(rs.getString(1));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 //    public void onMapReady(GoogleMap googleMap) {
 //        googleMap.addMarker(new MarkerOptions()
