@@ -15,7 +15,7 @@
     </string>
     <string name="nome_da_rua">Nome da rua: </string>
     <string name="bairro">Bairro: </string>
-    <string name="incidente">Tipo de incidente: </string>
+    <string name="incidente">Selecione as caracteristicas que a rua possui: </string>
     <string-array name="planets_array">
         <item>Assalto</item>
         <item>Assédio</item>

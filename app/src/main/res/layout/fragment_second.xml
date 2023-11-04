@@ -81,26 +81,17 @@
         android:layout_marginTop="125dp"
         android:background="@drawable/retangulo_3" />
 
-    <View
-        android:id="@+id/view5"
-        android:layout_width="287dp"
-        android:layout_height="59dp"
-        android:layout_alignStart="@+id/rectangle_2"
-        android:layout_alignTop="@+id/rectangle_2"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="208dp"
-        android:background="@drawable/retangulo_3" />
-
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="200dp"
+        android:layout_width="285dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/rectangle_2"
         android:layout_alignTop="@+id/view2"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="181dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="176dp"
         android:text="@string/incidente"
-        android:textSize="16sp" />
+        android:textAlignment="center"
+        android:textSize="19sp" />
 
     <EditText
         android:id="@+id/editTextText3"
@@ -134,16 +125,6 @@
         android:layout_marginStart="45dp"
         android:layout_marginTop="26dp"
         app:srcCompat="@drawable/usuario" />
-
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_alignStart="@+id/rectangle_2"
-        android:layout_alignBottom="@+id/rectangle_2"
-        android:layout_marginStart="189dp"
-        android:layout_marginBottom="278dp"
-        android:spinnerMode="dropdown" />
 
     <CheckBox
         android:id="@+id/checkBoxIluminacao"
@@ -181,7 +162,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/rectangle_2"
         android:layout_alignTop="@+id/rectangle_2"
-        android:layout_marginStart="166dp"
+        android:layout_marginStart="177dp"
         android:layout_marginTop="345dp"
         android:text="Movimentacao" />
 

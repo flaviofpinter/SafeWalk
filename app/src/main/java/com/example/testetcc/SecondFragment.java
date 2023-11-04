@@ -8,12 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.testetcc.databinding.FragmentSecondBinding;
+
+import java.sql.SQLException;
 
 public class SecondFragment extends Fragment {
 
@@ -43,13 +43,17 @@ public class SecondFragment extends Fragment {
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
                 //valores dos campos, em ordem, só montar o query e mandar pro banco chamando a classe DAO.
-                //binding.editTextText.getText();
-                //binding.editTextText3.getText();
                 //binding.spinner2.getSelectedItem().toString();
 //                binding.checkBoxComercio.isChecked();
 //                binding.checkBoxIluminacao.isChecked();
 //                binding.checkBoxPoliciamento.isChecked();
 //                binding.checkBoxMovimentacao.isChecked();
+                try {
+                    DAO dao = new DAO();
+                    dao.inserirOcorrencia(binding.editTextText.getText().toString(), binding.editTextText3.getText().toString(), binding.checkBoxPoliciamento.isChecked(), binding.checkBoxIluminacao.isChecked(), binding.checkBoxComercio.isChecked(), binding.checkBoxMovimentacao.isChecked());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         Spinner spinner = (Spinner) getView().findViewById(R.id.spinner2);
