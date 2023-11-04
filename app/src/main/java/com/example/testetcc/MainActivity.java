@@ -73,11 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //database URL and user info.
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://10.0.2.2:3307/testetcc", "root", "flavioteste123");
+            Connection conn = DriverManager.getConnection("jdbc:mariadb://10.0.2.2:3306/dados_seguranca_publica", "root", "password");
             //Creates statement.
             Statement statement = conn.createStatement();
             //Executes query.
-            ResultSet rs = statement.executeQuery("SELECT * FROM tabelateste;");
+            ResultSet rs = statement.executeQuery("SELECT * FROM dados_boletim;");
             //Moves the cursor to the first row.
             rs.first();
             //Prints the first column and first row value.

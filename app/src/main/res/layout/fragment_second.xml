@@ -145,4 +145,44 @@
         android:layout_marginBottom="278dp"
         android:spinnerMode="dropdown" />
 
+    <CheckBox
+        android:id="@+id/checkBoxIluminacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/rectangle_2"
+        android:layout_alignTop="@+id/rectangle_2"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="345dp"
+        android:text="iluminação" />
+
+    <CheckBox
+        android:id="@+id/checkBoxPoliciamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/rectangle_2"
+        android:layout_alignTop="@+id/rectangle_2"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="289dp"
+        android:text="Policiamento" />
+
+    <CheckBox
+        android:id="@+id/checkBoxComercio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/rectangle_2"
+        android:layout_alignTop="@+id/rectangle_2"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="291dp"
+        android:text="Comercio" />
+
+    <CheckBox
+        android:id="@+id/checkBoxMovimentacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/rectangle_2"
+        android:layout_alignTop="@+id/rectangle_2"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="345dp"
+        android:text="Movimentacao" />
+
 </RelativeLayout>

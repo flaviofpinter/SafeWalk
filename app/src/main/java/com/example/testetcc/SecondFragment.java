@@ -42,6 +42,14 @@ public class SecondFragment extends Fragment {
             public void onClick(View view) {
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                //valores dos campos, em ordem, só montar o query e mandar pro banco chamando a classe DAO.
+                //binding.editTextText.getText();
+                //binding.editTextText3.getText();
+                //binding.spinner2.getSelectedItem().toString();
+//                binding.checkBoxComercio.isChecked();
+//                binding.checkBoxIluminacao.isChecked();
+//                binding.checkBoxPoliciamento.isChecked();
+//                binding.checkBoxMovimentacao.isChecked();
             }
         });
         Spinner spinner = (Spinner) getView().findViewById(R.id.spinner2);

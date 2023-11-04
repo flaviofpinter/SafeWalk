@@ -13,7 +13,7 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/thirdFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -31,5 +31,10 @@
     <fragment
         android:id="@+id/thirdFragment"
         android:name="com.example.testetcc.ThirdFragment"
-        android:label="ThirdFragment" />
+        android:label="ThirdFragment" >
+        <action
+            android:id="@+id/action_thirdFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment"
+            app:popUpTo="@id/SecondFragment" />
+    </fragment>
 </navigation>
