@@ -56,14 +56,14 @@ public class SecondFragment extends Fragment {
                 }
             }
         });
-        Spinner spinner = (Spinner) getView().findViewById(R.id.spinner2);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this.getContext(),
-                R.array.planets_array,
-                android.R.layout.simple_spinner_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+//        Spinner spinner = (Spinner) getView().findViewById(R.id.spinner2);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+//                this.getContext(),
+//                R.array.planets_array,
+//                android.R.layout.simple_spinner_item
+//        );
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
     }
 
     @Override

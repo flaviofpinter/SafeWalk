@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#242323"
+    android:onClick="buscarInformacoesGPS"
     android:orientation="vertical">
 
     <Button
@@ -27,14 +28,22 @@
         android:layout_marginTop="15dp"
         app:srcCompat="@drawable/usuario" />
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="354dp"
-        android:layout_height="694dp"
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView9"-->
+    <!--        android:layout_width="354dp"-->
+    <!--        android:layout_height="694dp"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_alignParentTop="true"-->
+    <!--        android:layout_marginStart="35dp"-->
+    <!--        android:layout_marginTop="101dp"-->
+    <!--        app:srcCompat="@drawable/mapa2" />-->
+    <WebView
+        android:id="@+id/webv"
+        android:layout_width="371dp"
+        android:layout_height="667dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="101dp"
-        app:srcCompat="@drawable/mapa2" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="85dp" />
 
 </RelativeLayout>

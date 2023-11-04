@@ -1,5 +1,9 @@
 package com.example.testetcc;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -15,6 +19,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import androidx.core.app.ActivityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,8 +29,10 @@ import com.example.testetcc.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -43,20 +50,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        linearLayoutSecundario = findViewById(R.id.layoutsecundario);
-//        linearLayoutSecundario.setBackgroundColor(getResources().getColor(R.color.black));
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.mapView2);
-//        mapFragment.getMapAsync(this);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,28 +69,7 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy =
                 new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        try {
-            //database URL and user info.
-            Connection conn = DriverManager.getConnection("jdbc:mariadb://10.0.2.2:3306/dados_seguranca_publica", "root", "password");
-            //Creates statement.
-            Statement statement = conn.createStatement();
-            //Executes query.
-            ResultSet rs = statement.executeQuery("SELECT * FROM dados_boletim;");
-            //Moves the cursor to the first row.
-            rs.first();
-            //Prints the first column and first row value.
-            System.out.println(rs.getString(1));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
     }
-//    public void onMapReady(GoogleMap googleMap) {
-//        googleMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(0, 0))
-//                .title("Marker"));
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -120,5 +98,37 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    public void buscarInformacoesGPS(View v) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)   != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.ACCESS_NETWORK_STATE}, 1);
+            return;
+        }
+
+        LocationManager  mLocManager  = (LocationManager) getSystemService(MainActivity.this.LOCATION_SERVICE);
+        LocationListener mLocListener = new MinhaLocalizacaoListener();
+
+        mLocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocListener);
+
+        if (mLocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            String texto = "Latitude.: " + MinhaLocalizacaoListener.latitude + "\n" +
+                    "Longitude: " + MinhaLocalizacaoListener.longitude + "\n";
+            Toast.makeText(MainActivity.this, texto, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(MainActivity.this, "GPS DESABILITADO.", Toast.LENGTH_LONG).show();
+        }
+
+        this.mostrarGoogleMaps(MinhaLocalizacaoListener.latitude, MinhaLocalizacaoListener.longitude);
+    }
+
+    public void mostrarGoogleMaps(double latitude, double longitude) {
+        WebView wv = findViewById(R.id.webv);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.loadUrl("https://www.google.com/maps/search/?api=1&query=" + latitude + "," + longitude);
     }
 }
