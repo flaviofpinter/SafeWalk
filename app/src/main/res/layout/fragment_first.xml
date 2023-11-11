@@ -22,8 +22,8 @@
             android:layout_alignStart="@+id/lorem_ipsum"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="false"
-            android:layout_marginStart="-4dp"
-            android:layout_marginTop="461dp"
+            android:layout_marginStart="-5dp"
+            android:layout_marginTop="473dp"
             android:layout_marginBottom="331dp"
             android:gravity="top"
             android:lineSpacingExtra="4sp"
@@ -33,14 +33,14 @@
 
         <TextView
             android:id="@+id/lorem_ipsum"
-            android:layout_width="313dp"
-            android:layout_height="128dp"
+            android:layout_width="361dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="52dp"
-            android:layout_marginTop="540dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="530dp"
             android:gravity="top"
-            android:text="@string/lorem_ipsum"
+            android:text="O Safewalk é um app que prioriza a segurança durante o trajeto do usuário, especialmente para as mulheres, mostrando rotas e percursos mais seguros na localidade, visando reduzir riscos e garantir confiança ao selecionar um passeio na cidade. Junte-se à evolução para vias mais seguras."
             android:textAppearance="@style/lorem_ipsum" />
 
         <Button
@@ -54,7 +54,7 @@
             android:background="#00FFFFFF"
             android:padding="16dp"
             android:rotation="0"
-            android:text="@string/next" />
+            android:text="Avançar ->" />
 
         <ImageView
             android:id="@+id/imageView7"
