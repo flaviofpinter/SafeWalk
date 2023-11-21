@@ -1,35 +1,49 @@
 package com.example.testetcc;
 
 import android.Manifest;
+import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.*;
 import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+
 import androidx.core.app.ActivityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
 import com.example.testetcc.databinding.ActivityMainBinding;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.Toast;
+
 import java.io.IOException;
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -97,7 +111,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void buscarInformacoesGPS(View v) {
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -107,7 +120,9 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        LocationManager mLocManager = (LocationManager) getSystemService(MainActivity.this.LOCATION_SERVICE);
+        LocationManager mLocManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+//        LocationManager mLocManager = (LocationManager) getSystemService();
         LocationListener mLocListener = new MinhaLocalizacaoListener();
 
         mLocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocListener);
@@ -120,7 +135,7 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this, "GPS DESABILITADO.", Toast.LENGTH_LONG).show();
         }
 
-        this.mostrarGoogleMaps(MinhaLocalizacaoListener.latitude, MinhaLocalizacaoListener.longitude);
+//        this.mostrarGoogleMaps(MinhaLocalizacaoListener.latitude, MinhaLocalizacaoListener.longitude);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -136,60 +151,80 @@ public class MainActivity extends AppCompatActivity
         }
 
         mapFragment.getMapAsync(this);
+        System.out.println("VAI TOMAR NO CU UNIP");
     }
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        System.out.println("VAI TOMAR NO CU UNIP");
-
-        // Endereço da rua que você deseja obter as coordenadas
-        String address = "Avenida Paulista, São Paulo, SP";
-
-        // Cria um objeto Geocoder
-        Geocoder geocoder = new Geocoder(this);
-
-        // Tenta converter o endereço em coordenadas
         try {
-            List<Address> addresses = geocoder.getFromLocationName(address, 1);
+            DAO dao = new DAO();
+            List<String> ruas = dao.getRuas();
+//            LatLng[] arr = new LatLng[] {};
+            HashMap<LatLng, LatLng> hashMap = new HashMap<>();
+//            List<LatLng> arr = new LinkedList<LatLng>();
+            for(int i = 0; i < ruas.size(); i++){
+                String addressPaulista1 = ruas.get(i) + " 001, São Paulo, SP";
+                String addressPaulista2 = ruas.get(i) + " 250, São Paulo, SP";
+
+                Geocoder geocoder = new Geocoder(this);
+                List<Address> addressesP1 = geocoder.getFromLocationName(addressPaulista1, 1);
+                List<Address> addressesP2 = geocoder.getFromLocationName(addressPaulista2, 1);
+
+                hashMap.put(new LatLng(addressesP2.get(0).getLatitude(), addressesP2.get(0).getLongitude()), new LatLng(addressesP1.get(0).getLatitude(), addressesP1.get(0).getLongitude()));
+//                arr.add(new LatLng(addressesP1.get(0).getLatitude(), addressesP1.get(0).getLongitude()));
+//                arr.add(new LatLng(addressesP2.get(0).getLatitude(), addressesP2.get(0).getLongitude()));
+            }
+            System.out.println(hashMap);
+            String addressPaulista1 = "Avenida Paulista 001, São Paulo, SP";
+            String addressPaulista2 = "Avenida Paulista 2500, São Paulo, SP";
+
+
+            // Cria um objeto Geocoder
+            Geocoder geocoder = new Geocoder(this);
+            List<Address> addressesP1 = geocoder.getFromLocationName(addressPaulista1, 1);
+            List<Address> addressesP2 = geocoder.getFromLocationName(addressPaulista2, 1);
 
             // Se a conversão foi bem-sucedida, obtem as coordenadas do começo da rua
-            if (addresses.size() > 0) {
-                Address address1 = addresses.get(0);
+            if (addressesP1.size() > 0 && addressesP2.size() > 0) {
+                Address address1 = addressesP1.get(0);
                 LatLng start = new LatLng(address1.getLatitude(), address1.getLongitude());
 
                 // Obtém as coordenadas do fim da rua
-                Address address2 = addresses.get(addresses.size() - 1);
+//                Address address2 = addressesP2.get(addressesP2.size() - 1);
+                Address address2 = addressesP2.get(0);
                 LatLng end = new LatLng(address2.getLatitude(), address2.getLongitude());
+
+
 
                 // Add polylines to the map.
                 // Polylines are useful to show a route or some other connection between points.
-                Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
-                        .clickable(true)
-                        .add(
-                                new LatLng(-35.016, 143.321),
-                                new LatLng(-34.747, 145.592),
-                                new LatLng(-34.364, 147.891),
-                                new LatLng(-33.501, 150.217),
-                                new LatLng(-32.306, 149.248),
-                                new LatLng(-32.491, 147.309),
-                                start, end));
-                System.out.println(start);
-                System.out.println(end);
+                for (HashMap.Entry<LatLng, LatLng> entry : hashMap.entrySet()) {
+                    Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
+                            .clickable(true)
+                            .add(entry.getKey(), entry.getValue()));
+                    polyline1.setTag("A");
+                }
+//                System.out.println(start);
+//                System.out.println(end);
                 // Store a data object with the polyline, used here to indicate an arbitrary type.
-                polyline1.setTag("A");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        Polyline polyline2 = googleMap.addPolyline(new PolylineOptions()
-                .clickable(true)
-                .add(
-                        new LatLng(-23.568952176077044, -46.647165094873216),
-                        new LatLng(-23.556417773933546, -46.662359700269214)));
-        polyline2.setTag("B");
-        stylePolyline(polyline2);
+            }
+        } catch (IOException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+        // Endereço da rua que você deseja obter as coordenadas
+
+
+        // Tenta converter o endereço em coordenadas
+
+//        Polyline polyline2 = googleMap.addPolyline(new PolylineOptions()
+//                .clickable(true)
+//                .add(
+//                        new LatLng(-23.568952176077044, -46.647165094873216),
+//                        new LatLng(-23.556417773933546, -46.662359700269214)));
+//        polyline2.setTag("B");
+//        stylePolyline(polyline2);
 
         // Add polygons to indicate areas on the map.
 //        Polygon polygon1 = googleMap.addPolygon(new PolygonOptions()
@@ -314,7 +349,7 @@ public class MainActivity extends AppCompatActivity
     private static final List<PatternItem> PATTERN_POLYGON_ALPHA = Arrays.asList(GAP, DASH);
 
     public void mostrarGoogleMaps(double latitude, double longitude) {
-        WebView wv = findViewById(R.id.webv);
+        WebView wv = findViewById(R.id.map);
         wv.getSettings().setJavaScriptEnabled(true);
         wv.loadUrl("https://www.google.com/maps/search/?api=1&query=" + latitude + "," + longitude);
     }

@@ -2,6 +2,8 @@ package com.example.testetcc;
 
 
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DAO {
     private final Connection conn;
@@ -34,5 +36,15 @@ public class DAO {
     private int getLastId(Statement statement, String tabela) throws SQLException {
         ResultSet rs = statement.executeQuery("SELECT id FROM " + tabela + " ORDER BY id DESC LIMIT 1");
         return (rs.next() ? rs.getInt(1) : 0) + 1;
+    }
+    public List<String> getRuas() throws SQLException {
+        List<String> result = new LinkedList<String>();
+        Statement stmt = conn.createStatement();
+        String sql = "SELECT nome_da_rua FROM endereco";
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()){
+            result.add(rs.getString(1));
+        }
+        return result;
     }
 }
