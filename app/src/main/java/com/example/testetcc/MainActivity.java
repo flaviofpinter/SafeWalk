@@ -35,6 +35,7 @@ import com.example.testetcc.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -65,16 +66,16 @@ public class MainActivity extends AppCompatActivity
         setContentView(binding.getRoot());
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show();
-            }
-        });
+//        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+//
+//        binding.fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAnchorView(R.id.fab)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         StrictMode.ThreadPolicy policy =
                 new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -151,7 +152,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         mapFragment.getMapAsync(this);
-        System.out.println("VAI TOMAR NO CU UNIP");
+        ProgressBar spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.VISIBLE);
     }
 
 
@@ -164,9 +166,10 @@ public class MainActivity extends AppCompatActivity
             HashMap<LatLng, LatLng> hashMap = new HashMap<>();
 //            List<LatLng> arr = new LinkedList<LatLng>();
             for(int i = 0; i < ruas.size(); i++){
-                String addressPaulista1 = ruas.get(i) + " 001, São Paulo, SP";
-                String addressPaulista2 = ruas.get(i) + " 250, São Paulo, SP";
-
+                String addressPaulista1 = ruas.get(i) + " 001, Bela vista, São Paulo, SP";
+                String addressPaulista2 = ruas.get(i) + " 2000, Bela vista, São Paulo, SP";
+                System.out.println(addressPaulista1);
+                System.out.println(addressPaulista2);
                 Geocoder geocoder = new Geocoder(this);
                 List<Address> addressesP1 = geocoder.getFromLocationName(addressPaulista1, 1);
                 List<Address> addressesP2 = geocoder.getFromLocationName(addressPaulista2, 1);
@@ -177,7 +180,7 @@ public class MainActivity extends AppCompatActivity
             }
             System.out.println(hashMap);
             String addressPaulista1 = "Avenida Paulista 001, São Paulo, SP";
-            String addressPaulista2 = "Avenida Paulista 2500, São Paulo, SP";
+            String addressPaulista2 = "Avenida Paulista 250, São Paulo, SP";
 
 
             // Cria um objeto Geocoder
@@ -251,11 +254,13 @@ public class MainActivity extends AppCompatActivity
 
         // Position the map's camera near Alice Springs in the center of Australia,
         // and set the zoom factor so most of Australia shows on the screen.
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-23.684, 133.903), 4));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-23.56547201745882, -46.65144677655266), 14));
 
         // Set listeners for click events.
         googleMap.setOnPolylineClickListener(this);
         googleMap.setOnPolygonClickListener(this);
+        ProgressBar spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.INVISIBLE);
     }
 
     private static final int COLOR_BLACK_ARGB = 0xff000000;

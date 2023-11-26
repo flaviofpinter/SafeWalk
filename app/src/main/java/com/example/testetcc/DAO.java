@@ -40,7 +40,7 @@ public class DAO {
     public List<String> getRuas() throws SQLException {
         List<String> result = new LinkedList<String>();
         Statement stmt = conn.createStatement();
-        String sql = "SELECT nome_da_rua FROM endereco";
+        String sql = "SELECT nome_da_rua FROM endereco LIMIT 20";
         ResultSet rs = stmt.executeQuery(sql);
         while (rs.next()){
             result.add(rs.getString(1));

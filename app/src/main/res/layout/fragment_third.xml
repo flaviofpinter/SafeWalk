@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#242323"
-    android:onClick="buscarInformacoesGPS"
     android:orientation="vertical">
 
     <Button
@@ -59,6 +58,17 @@
         android:layout_marginTop="654dp"
         android:onClick="buscarInformacoesGPS"
         android:text="Marcar ruas" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="167dp"
+        android:layout_marginTop="307dp"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>
